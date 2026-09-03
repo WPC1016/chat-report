@@ -1,0 +1,240 @@
+/* 聊天记录可视化报告 — 深色主题全局样式 */
+
+:root {
+  --bg: #0d1117;
+  --bg-soft: #161b27;
+  --bg-card: #1a2130;
+  --bg-card-hover: #212a3d;
+  --border: #2a3446;
+  --text: #e6edf3;
+  --text-dim: #8b98ad;
+  --text-faint: #5a6c82;
+  --accent: #4f8cff;
+  --accent-2: #f778ba;
+  --accent-3: #3fb950;
+  --accent-4: #d29922;
+  --radius: 12px;
+  --font: 'PingFang SC', 'Microsoft YaHei', 'Segoe UI', system-ui, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body, #app {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: #2d3a52; border-radius: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+/* ---------- 布局 ---------- */
+.app-shell { display: flex; min-height: 100vh; }
+
+.sidebar {
+  width: 208px;
+  flex-shrink: 0;
+  background: var(--bg-soft);
+  border-right: 1px solid var(--border);
+  padding: 20px 12px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.brand {
+  font-size: 17px;
+  font-weight: 700;
+  padding: 4px 10px 18px;
+  letter-spacing: 1px;
+}
+.brand span { color: var(--accent); }
+
+.nav { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+
+.nav a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 14px;
+  transition: background 0.15s, color 0.15s;
+}
+.nav a:hover { background: var(--bg-card); color: var(--text); }
+.nav a.router-link-active { background: var(--bg-card); color: var(--accent); font-weight: 600; }
+.nav a.disabled { opacity: 0.35; pointer-events: none; }
+
+.main { flex: 1; padding: 28px 36px 60px; max-width: 1200px; }
+
+.page-title { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+.page-sub { color: var(--text-dim); font-size: 13px; margin-bottom: 24px; }
+
+/* ---------- 卡片 ---------- */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.card h3 { font-size: 15px; font-weight: 600; margin-bottom: 14px; color: var(--text); }
+.card h3 small { color: var(--text-dim); font-weight: 400; margin-left: 8px; }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media (max-width: 900px) {
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .main { padding: 20px; }
+  .sidebar { width: 64px; }
+  .brand { font-size: 0; padding-bottom: 12px; }
+  .brand::first-letter { font-size: 20px; color: var(--accent); }
+  .nav a span { display: none; }
+}
+
+/* ---------- 大数字 ---------- */
+.big-num-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+@media (max-width: 900px) { .big-num-row { grid-template-columns: repeat(2, 1fr); } }
+
+.stat-card {
+  background: linear-gradient(145deg, var(--bg-card), var(--bg-soft));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+}
+.stat-card .num { font-size: 30px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.stat-card .num.c1 { color: var(--accent); }
+.stat-card .num.c2 { color: var(--accent-2); }
+.stat-card .num.c3 { color: var(--accent-3); }
+.stat-card .num.c4 { color: var(--accent-4); }
+.stat-card .label { color: var(--text-dim); font-size: 13px; margin-top: 2px; }
+
+/* ---------- 图表容器 ---------- */
+.chart { width: 100%; height: 340px; }
+.chart.tall { height: 420px; }
+.chart.short { height: 260px; }
+
+/* ---------- 导入页 ---------- */
+.drop-zone {
+  border: 2px dashed var(--border);
+  border-radius: 16px;
+  padding: 64px 32px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  background: var(--bg-card);
+}
+.drop-zone:hover, .drop-zone.dragover { border-color: var(--accent); background: var(--bg-card-hover); }
+.drop-zone .icon { font-size: 44px; margin-bottom: 12px; }
+.drop-zone .hint { color: var(--text-dim); font-size: 13px; margin-top: 10px; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 18px;
+  font-size: 14px;
+  font-family: var(--font);
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+.btn:hover { opacity: 0.88; }
+.btn.ghost { background: transparent; border: 1px solid var(--border); color: var(--text-dim); }
+.btn.ghost:hover { color: var(--text); border-color: var(--text-dim); }
+
+/* ---------- 「最」记录卡片 ---------- */
+.record-card {
+  background: linear-gradient(145deg, var(--bg-card), var(--bg-soft));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+.record-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--accent);
+}
+.record-card .rc-icon { font-size: 26px; margin-bottom: 8px; }
+.record-card .rc-title { font-size: 13px; color: var(--text-dim); margin-bottom: 6px; }
+.record-card .rc-value { font-size: 20px; font-weight: 700; }
+.record-card .rc-detail { font-size: 13px; color: var(--text-dim); margin-top: 6px; word-break: break-all; }
+
+/* ---------- 表格 ---------- */
+table.simple { width: 100%; border-collapse: collapse; font-size: 14px; }
+table.simple th, table.simple td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); }
+table.simple th { color: var(--text-dim); font-weight: 500; font-size: 13px; }
+table.simple td.num { font-variant-numeric: tabular-nums; }
+
+/* ---------- 其他 ---------- */
+.warn-box {
+  background: rgba(210, 153, 34, 0.12);
+  border: 1px solid rgba(210, 153, 34, 0.4);
+  color: #e3b341;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+.error-box {
+  background: rgba(248, 81, 73, 0.12);
+  border: 1px solid rgba(248, 81, 73, 0.4);
+  color: #f85149;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+.tag {
+  display: inline-block;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  border-radius: 20px;
+  padding: 2px 12px;
+  font-size: 12px;
+  margin-right: 6px;
+}
+.muted { color: var(--text-dim); font-size: 13px; }
+.quote {
+  border-left: 3px solid var(--border);
+  padding: 6px 12px;
+  margin-top: 8px;
+  color: var(--text-dim);
+  font-size: 13px;
+  background: var(--bg-soft);
+  border-radius: 0 8px 8px 0;
+  max-height: 120px;
+  overflow: hidden;
+}
+.topbar-note { text-align: right; margin-bottom: 12px; }
+
+/* ---------- 打印（导出 PDF） ---------- */
+@media print {
+  body { background: #fff !important; color: #111 !important; }
+  .sidebar, .no-print { display: none !important; }
+  .main { max-width: 100%; padding: 0; }
+  .card, .stat-card, .record-card {
+    background: #fff !important;
+    border: 1px solid #ddd !important;
+    break-inside: avoid;
+    color: #111 !important;
+  }
+  .page-title, .card h3, .rc-value, .num { color: #111 !important; }
+  .label, .page-sub, .rc-title, .rc-detail, .muted { color: #555 !important; }
+}
