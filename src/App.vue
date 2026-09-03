@@ -13,6 +13,7 @@ const navs = [
   { to: '/timeline', label: '时间规律', icon: '🕐' },
   { to: '/topics', label: '话题与词云', icon: '💬' },
   { to: '/records', label: '那些「最」', icon: '🏆' },
+  { to: '/ai', label: 'AI 洞察', icon: '🤖' },
 ]
 
 const hasData = computed(() => store.hasData.value)

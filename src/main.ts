@@ -9,6 +9,7 @@ import ComparePage from './pages/ComparePage.vue'
 import TimelinePage from './pages/TimelinePage.vue'
 import TopicPage from './pages/TopicPage.vue'
 import RecordsPage from './pages/RecordsPage.vue'
+import AiPage from './pages/AiPage.vue'
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -19,6 +20,7 @@ const router = createRouter({
     { path: '/timeline', name: 'timeline', component: TimelinePage, meta: { title: '时间规律' } },
     { path: '/topics', name: 'topics', component: TopicPage, meta: { title: '话题与词云' } },
     { path: '/records', name: 'records', component: RecordsPage, meta: { title: '那些「最」' } },
+    { path: '/ai', name: 'ai', component: AiPage, meta: { title: 'AI 洞察' } },
   ],
 })
 
