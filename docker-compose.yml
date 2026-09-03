@@ -1,0 +1,8 @@
+services:
+  web:
+    build: .
+    image: chat-report-web:latest
+    container_name: chat-report-web
+    ports:
+      - "${WEB_PORT:-10600}:80"
+    restart: unless-stopped
