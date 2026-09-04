@@ -91,12 +91,19 @@ const fmtCount = computed(() => state.messages.length)
     <div
       class="drop-zone"
       :class="{ dragover }"
+      role="button"
+      tabindex="0"
+      aria-label="拖拽文件到这里，或按回车键选择文件"
       @dragover.prevent="dragover = true"
       @dragleave="dragover = false"
       @drop.prevent="onDrop"
       @click="fileInput?.click()"
+      @keydown.enter.prevent="fileInput?.click()"
+      @keydown.space.prevent="fileInput?.click()"
     >
-      <div class="icon">🗂️</div>
+      <svg class="icon" viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-bottom:12px;">
+        <path d="M4 6a2 2 0 0 1 2-2h3.5l2 2.5H18a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zM12 10v6m0-6-3 3m3-3 3 3" />
+      </svg>
       <div>拖拽文件到这里，或点击选择文件</div>
       <div class="hint">
         支持格式：

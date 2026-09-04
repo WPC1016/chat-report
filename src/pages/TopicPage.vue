@@ -8,12 +8,12 @@ const store = useChatStore()
 const { state } = store
 const wc = computed(() => state.wordCloud!)
 
-const COLORS = ['#4f8cff', '#f778ba', '#3fb950', '#d29922', '#93c5fd', '#f0a35e', '#8ad2ce']
+const COLORS = ['#5b93ff', '#f778ba', '#3fb950', '#d29922', '#93c5fd', '#f0a35e', '#8ad2ce']
 
 function cloudOption(data: { word: string; count: number }[], title?: string): echarts.EChartsOption {
   return {
     backgroundColor: 'transparent',
-    title: title ? { text: title, left: 'center', top: 0, textStyle: { color: '#8b98ad', fontSize: 13, fontWeight: 500 } } : undefined,
+    title: title ? { text: title, left: 'center', top: 0, textStyle: { color: '#9aa8bd', fontSize: 13, fontWeight: 500 } } : undefined,
     tooltip: { formatter: (p: any) => `${p.name}：${p.value} 次` },
     series: [{
       type: 'wordCloud',
@@ -47,7 +47,7 @@ const topWordsOption = computed<echarts.EChartsOption>(() => {
     tooltip: { trigger: 'axis' },
     xAxis: {
       type: 'value',
-      axisLabel: { color: '#8b98ad' },
+      axisLabel: { color: '#9aa8bd' },
       splitLine: { lineStyle: { color: '#1c2433' } },
     },
     yAxis: {
@@ -59,9 +59,9 @@ const topWordsOption = computed<echarts.EChartsOption>(() => {
     series: [{
       type: 'bar',
       data: top.map((d) => d.count).reverse(),
-      itemStyle: { color: '#4f8cff', borderRadius: [0, 4, 4, 0] },
+      itemStyle: { color: '#5b93ff', borderRadius: [0, 4, 4, 0] },
       barMaxWidth: 14,
-      label: { show: true, position: 'right', color: '#8b98ad', fontSize: 11 },
+      label: { show: true, position: 'right', color: '#9aa8bd', fontSize: 11 },
     }],
     grid: { left: 70, right: 48, top: 12, bottom: 28 },
   }

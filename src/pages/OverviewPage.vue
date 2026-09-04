@@ -10,7 +10,7 @@ const { state } = store
 
 const stats = computed(() => state.stats!)
 
-const COLORS = ['#4f8cff', '#f778ba', '#3fb950', '#d29922']
+const COLORS = ['#5b93ff', '#f778ba', '#3fb950', '#d29922']
 
 const typePieOption = computed<echarts.EChartsOption>(() => {
   const tc = stats.value.typeCounts
@@ -21,12 +21,12 @@ const typePieOption = computed<echarts.EChartsOption>(() => {
   return {
     backgroundColor: 'transparent',
     tooltip: { trigger: 'item' },
-    legend: { bottom: 0, textStyle: { color: '#8b98ad' } },
+    legend: { bottom: 0, textStyle: { color: '#9aa8bd' } },
     series: [{
       type: 'pie',
       radius: ['42%', '68%'],
       center: ['50%', '44%'],
-      label: { color: '#8b98ad' },
+      label: { color: '#9aa8bd' },
       data: Object.entries(tc)
         .filter(([, v]) => v > 0)
         .map(([k, v]) => ({ name: labels[k] || k, value: v })),
@@ -43,14 +43,14 @@ const dailyOption = computed<echarts.EChartsOption>(() => {
     xAxis: {
       type: 'category',
       data: daily.map((d) => d.date),
-      axisLabel: { color: '#8b98ad', formatter: (v: string) => v.slice(5) },
+      axisLabel: { color: '#9aa8bd', formatter: (v: string) => v.slice(5) },
       axisLine: { lineStyle: { color: '#2a3446' } },
     },
-    yAxis: { type: 'value', axisLabel: { color: '#8b98ad' }, splitLine: { lineStyle: { color: '#1c2433' } } },
+    yAxis: { type: 'value', axisLabel: { color: '#9aa8bd' }, splitLine: { lineStyle: { color: '#1c2433' } } },
     series: [{
       type: 'bar',
       data: daily.map((d) => d.count),
-      itemStyle: { color: '#4f8cff', borderRadius: [2, 2, 0, 0] },
+      itemStyle: { color: '#5b93ff', borderRadius: [2, 2, 0, 0] },
       barMaxWidth: 8,
     }],
     grid: { left: 40, right: 16, top: 20, bottom: 28 },
@@ -63,14 +63,14 @@ const monthlyOption = computed<echarts.EChartsOption>(() => {
   return {
     backgroundColor: 'transparent',
     tooltip: { trigger: 'axis' },
-    legend: { top: 0, textStyle: { color: '#8b98ad' } },
+    legend: { top: 0, textStyle: { color: '#9aa8bd' } },
     xAxis: {
       type: 'category',
       data: m.map((d) => d.month),
-      axisLabel: { color: '#8b98ad' },
+      axisLabel: { color: '#9aa8bd' },
       axisLine: { lineStyle: { color: '#2a3446' } },
     },
-    yAxis: { type: 'value', axisLabel: { color: '#8b98ad' }, splitLine: { lineStyle: { color: '#1c2433' } } },
+    yAxis: { type: 'value', axisLabel: { color: '#9aa8bd' }, splitLine: { lineStyle: { color: '#1c2433' } } },
     series: senders.map((s, i) => ({
       name: s,
       type: 'line' as const,

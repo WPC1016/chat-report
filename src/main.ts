@@ -3,24 +3,16 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import App from './App.vue'
 import './styles/main.css'
 
-import ImportPage from './pages/ImportPage.vue'
-import OverviewPage from './pages/OverviewPage.vue'
-import ComparePage from './pages/ComparePage.vue'
-import TimelinePage from './pages/TimelinePage.vue'
-import TopicPage from './pages/TopicPage.vue'
-import RecordsPage from './pages/RecordsPage.vue'
-import AiPage from './pages/AiPage.vue'
-
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
-    { path: '/', name: 'import', component: ImportPage, meta: { title: '导入数据' } },
-    { path: '/overview', name: 'overview', component: OverviewPage, meta: { title: '总览' } },
-    { path: '/compare', name: 'compare', component: ComparePage, meta: { title: '双方对比' } },
-    { path: '/timeline', name: 'timeline', component: TimelinePage, meta: { title: '时间规律' } },
-    { path: '/topics', name: 'topics', component: TopicPage, meta: { title: '话题与词云' } },
-    { path: '/records', name: 'records', component: RecordsPage, meta: { title: '那些「最」' } },
-    { path: '/ai', name: 'ai', component: AiPage, meta: { title: 'AI 洞察' } },
+    { path: '/', name: 'import', component: () => import('./pages/ImportPage.vue'), meta: { title: '导入数据' } },
+    { path: '/overview', name: 'overview', component: () => import('./pages/OverviewPage.vue'), meta: { title: '总览' } },
+    { path: '/compare', name: 'compare', component: () => import('./pages/ComparePage.vue'), meta: { title: '双方对比' } },
+    { path: '/timeline', name: 'timeline', component: () => import('./pages/TimelinePage.vue'), meta: { title: '时间规律' } },
+    { path: '/topics', name: 'topics', component: () => import('./pages/TopicPage.vue'), meta: { title: '话题与词云' } },
+    { path: '/records', name: 'records', component: () => import('./pages/RecordsPage.vue'), meta: { title: '那些「最」' } },
+    { path: '/ai', name: 'ai', component: () => import('./pages/AiPage.vue'), meta: { title: 'AI 洞察' } },
   ],
 })
 

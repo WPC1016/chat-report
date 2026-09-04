@@ -8,7 +8,7 @@ const store = useChatStore()
 const { state } = store
 const stats = computed(() => state.stats!)
 
-const COLORS = ['#4f8cff', '#f778ba', '#3fb950', '#d29922']
+const COLORS = ['#5b93ff', '#f778ba', '#3fb950', '#d29922']
 const WEEKDAYS = ['周日', '周一', '周二', '周三', '周四', '周五', '周六']
 const two = computed(() => stats.value.participants.slice(0, 2))
 
@@ -18,14 +18,14 @@ const hourlyOption = computed<echarts.EChartsOption>(() => {
   return {
     backgroundColor: 'transparent',
     tooltip: { trigger: 'axis' },
-    legend: { top: 0, textStyle: { color: '#8b98ad' } },
+    legend: { top: 0, textStyle: { color: '#9aa8bd' } },
     xAxis: {
       type: 'category',
       data: h.map((d) => `${d.hour}时`),
-      axisLabel: { color: '#8b98ad' },
+      axisLabel: { color: '#9aa8bd' },
       axisLine: { lineStyle: { color: '#2a3446' } },
     },
-    yAxis: { type: 'value', axisLabel: { color: '#8b98ad' }, splitLine: { lineStyle: { color: '#1c2433' } } },
+    yAxis: { type: 'value', axisLabel: { color: '#9aa8bd' }, splitLine: { lineStyle: { color: '#1c2433' } } },
     series: two.value.map((p, i) => ({
       name: p.name,
       type: 'line' as const,
@@ -45,14 +45,14 @@ const weekdayOption = computed<echarts.EChartsOption>(() => {
   return {
     backgroundColor: 'transparent',
     tooltip: { trigger: 'axis' },
-    legend: { top: 0, textStyle: { color: '#8b98ad' } },
+    legend: { top: 0, textStyle: { color: '#9aa8bd' } },
     xAxis: {
       type: 'category',
       data: w.map((d) => WEEKDAYS[d.weekday]),
-      axisLabel: { color: '#8b98ad' },
+      axisLabel: { color: '#9aa8bd' },
       axisLine: { lineStyle: { color: '#2a3446' } },
     },
-    yAxis: { type: 'value', axisLabel: { color: '#8b98ad' }, splitLine: { lineStyle: { color: '#1c2433' } } },
+    yAxis: { type: 'value', axisLabel: { color: '#9aa8bd' }, splitLine: { lineStyle: { color: '#1c2433' } } },
     series: two.value.map((p, i) => ({
       name: p.name,
       type: 'bar' as const,
@@ -85,14 +85,14 @@ const heatOption = computed<echarts.EChartsOption>(() => {
     xAxis: {
       type: 'category',
       data: Array.from({ length: 24 }, (_, i) => `${i}`),
-      axisLabel: { color: '#8b98ad' },
+      axisLabel: { color: '#9aa8bd' },
       axisLine: { show: false },
       splitArea: { show: false },
     },
     yAxis: {
       type: 'category',
       data: WEEKDAYS,
-      axisLabel: { color: '#8b98ad' },
+      axisLabel: { color: '#9aa8bd' },
       axisLine: { show: false },
     },
     visualMap: {
@@ -102,8 +102,9 @@ const heatOption = computed<echarts.EChartsOption>(() => {
       orient: 'horizontal',
       left: 'center',
       bottom: 0,
-      textStyle: { color: '#8b98ad' },
-      inRange: { color: ['#161b27', '#1d4ed8', '#4f8cff', '#93c5fd', '#f778ba'] },
+      textStyle: { color: '#9aa8bd' },
+      // 冷→热渐变（蓝→橙→品红），高值更醒目
+      inRange: { color: ['#161b27', '#1d4ed8', '#5b93ff', '#93c5fd', '#f0a35e', '#f778ba'] },
     },
     series: [{
       type: 'heatmap',

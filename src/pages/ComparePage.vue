@@ -9,7 +9,7 @@ const store = useChatStore()
 const { state } = store
 const stats = computed(() => state.stats!)
 
-const COLORS = ['#4f8cff', '#f778ba', '#3fb950', '#d29922']
+const COLORS = ['#5b93ff', '#f778ba', '#3fb950', '#d29922']
 
 const two = computed(() => stats.value.participants.slice(0, 2))
 
@@ -21,14 +21,14 @@ const compareBarOption = computed<echarts.EChartsOption>(() => {
   return {
     backgroundColor: 'transparent',
     tooltip: { trigger: 'axis' },
-    legend: { top: 0, textStyle: { color: '#8b98ad' } },
+    legend: { top: 0, textStyle: { color: '#9aa8bd' } },
     xAxis: {
       type: 'category',
       data: ['消息数', '总字数', '平均字数/条', '表情包数'],
-      axisLabel: { color: '#8b98ad' },
+      axisLabel: { color: '#9aa8bd' },
       axisLine: { lineStyle: { color: '#2a3446' } },
     },
-    yAxis: { type: 'value', axisLabel: { color: '#8b98ad' }, splitLine: { lineStyle: { color: '#1c2433' } } },
+    yAxis: { type: 'value', axisLabel: { color: '#9aa8bd' }, splitLine: { lineStyle: { color: '#1c2433' } } },
     series: names.map((n, i) => ({
       name: n,
       type: 'bar' as const,
@@ -75,12 +75,12 @@ const replyBarOption = computed<echarts.EChartsOption>(() => {
     xAxis: {
       type: 'category',
       data: ['中位回复速度', '最快回复'],
-      axisLabel: { color: '#8b98ad' },
+      axisLabel: { color: '#9aa8bd' },
       axisLine: { lineStyle: { color: '#2a3446' } },
     },
     yAxis: {
       type: 'value',
-      axisLabel: { color: '#8b98ad', formatter: (v: number) => v >= 60 ? `${Math.round(v / 60)}分` : `${v}秒` },
+      axisLabel: { color: '#9aa8bd', formatter: (v: number) => v >= 60 ? `${Math.round(v / 60)}分` : `${v}秒` },
       splitLine: { lineStyle: { color: '#1c2433' } },
     },
     series: names.map((n, i) => {
@@ -104,12 +104,12 @@ const starterOption = computed<echarts.EChartsOption>(() => {
   return {
     backgroundColor: 'transparent',
     tooltip: { trigger: 'item' },
-    legend: { bottom: 0, textStyle: { color: '#8b98ad' } },
+    legend: { bottom: 0, textStyle: { color: '#9aa8bd' } },
     series: [{
       type: 'pie',
       radius: ['42%', '68%'],
       center: ['50%', '44%'],
-      label: { color: '#8b98ad', formatter: '{b}: {d}%' },
+      label: { color: '#9aa8bd', formatter: '{b}: {d}%' },
       data: Object.entries(ss).map(([name, value]) => ({ name, value })),
       color: COLORS,
     }],
