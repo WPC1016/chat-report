@@ -8,7 +8,7 @@ const store = useChatStore()
 const { state } = store
 const wc = computed(() => state.wordCloud!)
 
-const COLORS = ['#5b93ff', '#f778ba', '#3fb950', '#d29922', '#93c5fd', '#f0a35e', '#8ad2ce']
+const COLORS = ['#5b93ff', '#f778ba', '#3fb950', '#e0a63f', '#93c5fd', '#f0a35e', '#8ad2ce']
 
 function cloudOption(data: { word: string; count: number }[], title?: string): echarts.EChartsOption {
   return {

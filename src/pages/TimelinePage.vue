@@ -8,7 +8,7 @@ const store = useChatStore()
 const { state } = store
 const stats = computed(() => state.stats!)
 
-const COLORS = ['#5b93ff', '#f778ba', '#3fb950', '#d29922']
+const COLORS = ['#5b93ff', '#f778ba', '#3fb950', '#e0a63f']
 const WEEKDAYS = ['周日', '周一', '周二', '周三', '周四', '周五', '周六']
 const two = computed(() => stats.value.participants.slice(0, 2))
 

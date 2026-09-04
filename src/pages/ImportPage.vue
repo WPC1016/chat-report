@@ -117,17 +117,18 @@ const fmtCount = computed(() => state.messages.length)
       <button class="btn ghost" @click="loadDemo">没有文件？先用示例数据体验 →</button>
     </div>
 
-    <div v-if="state.error" class="error-box" style="margin-top:20px;">
+    <div v-if="state.error" class="error-box" role="alert" style="margin-top:var(--sp-5);">
       {{ state.error }}
     </div>
 
-    <div v-if="state.parseWarnings.length && fmtCount" class="warn-box" style="margin-top:20px;">
+    <div v-if="state.parseWarnings.length && fmtCount" class="warn-box" role="status" style="margin-top:var(--sp-5);">
       <div v-for="(w, i) in state.parseWarnings" :key="i">· {{ w }}</div>
       <div v-if="state.skipped">· 跳过了 {{ state.skipped }} 行无法识别的内容</div>
     </div>
 
-    <div class="card" style="margin-top:32px;">
+    <div class="card" style="margin-top:var(--sp-8);">
       <h3>如何导出聊天记录</h3>
+      <div class="table-wrap">
       <table class="simple">
         <thead>
           <tr><th>来源</th><th>方式</th><th>推荐格式</th></tr>
@@ -155,7 +156,8 @@ const fmtCount = computed(() => state.messages.length)
           </tr>
         </tbody>
       </table>
-      <p class="muted" style="margin-top:12px;">
+      </div>
+      <p class="muted" style="margin-top:var(--sp-3);">
         本工具只解析你已导出的文件，不读取、不解密任何聊天软件的本地数据库。
       </p>
     </div>

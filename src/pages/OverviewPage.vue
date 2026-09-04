@@ -10,7 +10,7 @@ const { state } = store
 
 const stats = computed(() => state.stats!)
 
-const COLORS = ['#5b93ff', '#f778ba', '#3fb950', '#d29922']
+const COLORS = ['#5b93ff', '#f778ba', '#3fb950', '#e0a63f']
 
 const typePieOption = computed<echarts.EChartsOption>(() => {
   const tc = stats.value.typeCounts

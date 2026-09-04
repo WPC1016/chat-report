@@ -125,7 +125,7 @@ function copyOutput() {
         <span class="muted">{{ panelOpen ? '收起 ▲' : '展开 ▼' }}</span>
       </div>
 
-      <div v-show="panelOpen" style="margin-top:16px;">
+      <div v-show="panelOpen" class="cfg-body">
         <div class="grid-2">
           <div>
             <label class="field-label">接口地址（Base URL，OpenAI 兼容）</label>
@@ -136,25 +136,25 @@ function copyOutput() {
             <input v-model="cfg.model" class="field" placeholder="如 deepseek-chat / gpt-4o-mini / qwen2.5:7b" />
           </div>
         </div>
-        <div style="margin-top:12px;">
+        <div class="cfg-row">
           <label class="field-label">API Key（选填，本地模型可留空）</label>
-          <div style="display:flex; gap:8px;">
+          <div class="field-inline">
             <input v-model="cfg.apiKey" :type="showKey ? 'text' : 'password'" class="field" placeholder="sk-..." autocomplete="off" />
             <button class="btn ghost" @click="showKey = !showKey">{{ showKey ? '隐藏' : '显示' }}</button>
           </div>
         </div>
-        <div style="margin-top:12px;">
-          <label class="field-label" style="display:flex; align-items:center; gap:8px; cursor:pointer;">
-            <input type="checkbox" v-model="cfg.includeSample" />
+        <div class="cfg-row">
+          <label class="check-label">
+            <input type="checkbox" class="checkbox" v-model="cfg.includeSample" />
             附带聊天原文样本（约 40 条等距抽样，用于话题/风格分析；默认关闭以保护隐私）
           </label>
         </div>
-        <div style="display:flex; gap:10px; margin-top:16px; flex-wrap:wrap;">
+        <div class="btn-row">
           <button class="btn" @click="persist">保存配置</button>
           <button class="btn ghost" :disabled="testing || !cfg.baseUrl" @click="testConnection">{{ testing ? '测试中…' : '测试连通' }}</button>
           <button class="btn ghost" @click="forget">清除本机配置</button>
         </div>
-        <div v-if="testResult" class="muted" style="margin-top:10px;">{{ testResult }}</div>
+        <div v-if="testResult" class="muted" style="margin-top:10px;" role="status">{{ testResult }}</div>
       </div>
     </div>
 
@@ -169,9 +169,9 @@ function copyOutput() {
 
     <!-- 生成 -->
     <div class="card">
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-        <h3 style="margin:0;">分析报告 {{ running ? `· 生成中 ${elapsed}s` : '' }}</h3>
-        <div style="display:flex; gap:10px;" class="no-print">
+      <div class="gen-head">
+        <h3 style="margin:0;">分析报告 <small v-if="running" class="running-hint">生成中 {{ elapsed }}s</small></h3>
+        <div class="btn-row no-print">
           <template v-if="!running">
             <button class="btn" :disabled="!cfg.baseUrl || !cfg.model" @click="runAnalysis">开始 AI 分析</button>
           </template>
@@ -198,6 +198,16 @@ function copyOutput() {
 </template>
 
 <style scoped>
+.cfg-body { margin-top: var(--sp-4); }
+.cfg-row { margin-top: var(--sp-3); }
+.cfg-row:first-child { margin-top: 0; }
+.field-inline { display: flex; gap: var(--sp-2); }
+.btn-row { display: flex; gap: var(--sp-3); flex-wrap: wrap; margin-top: var(--sp-4); }
+.check-label { display: flex; align-items: center; gap: var(--sp-2); cursor: pointer; font-size: 13px; color: var(--text-dim); }
+.check-label:hover { color: var(--text); }
+.checkbox { accent-color: var(--accent); width: 15px; height: 15px; cursor: pointer; }
+.gen-head { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--sp-3); }
+.running-hint { color: var(--accent-4); font-weight: 400; font-size: 12px; }
 .field-label { display:block; font-size:13px; color:var(--text-dim); margin-bottom:6px; }
 .field {
   width:100%;

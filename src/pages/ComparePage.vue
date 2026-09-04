@@ -9,7 +9,7 @@ const store = useChatStore()
 const { state } = store
 const stats = computed(() => state.stats!)
 
-const COLORS = ['#5b93ff', '#f778ba', '#3fb950', '#d29922']
+const COLORS = ['#5b93ff', '#f778ba', '#3fb950', '#e0a63f']
 
 const two = computed(() => stats.value.participants.slice(0, 2))
 
@@ -167,6 +167,7 @@ const tableRows = computed(() => {
       </div>
       <div class="card">
         <h3>对比明细</h3>
+        <div class="table-wrap">
         <table class="simple">
           <thead>
             <tr><th>指标</th><th v-for="r in tableRows" :key="r.name">{{ r.name }}</th></tr>
@@ -182,6 +183,7 @@ const tableRows = computed(() => {
             <tr><td>中位回复速度</td><td class="num" v-for="r in tableRows" :key="r.name">{{ r.medianReply }}</td></tr>
           </tbody>
         </table>
+        </div>
       </div>
     </div>
   </div>
